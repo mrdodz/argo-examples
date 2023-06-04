@@ -50,7 +50,32 @@ argocd app set <appname> #Set the application’s configuration.
 argocd app delete <appname> #Delete an Argo CD application.
 ```
 
+# Example commands
 
+```
+argocd ls apps
+argocd app list
+argocd app create webapp-kustom-prod \\n--repo https://github.com/mrdodz/argo-examples.git \\n--path kustom-webapp/overlays/prod --dest-server https://kubernetes.default.svc \\n--dest-namespace prod
+argocd app list
+argocd app sync argocd/webapp-kustom-prod
+kubectl create ns prod
+argocd app sync argocd/webapp-kustom-prod
+argocd app list
+kga -n prod
+argocd app list
+argocd app sync argocd/webapp-kustom-prod
+argocd app sync
+argocd app diff webapp-kustom-prod
+argocd app diff argocd/webapp-kustom-prod
+kn prod
+kga
+argocd app history argocd/webapp-kustom-prod
+argocd app rollback argocd/webapp-kustom-prod 0
+argocd app get argocd/webapp-kustom-prod 0
+argocd app get argocd/webapp-kustom-prod
+argocd app logs argocd/webapp-kustom-prod
+argocd app delete argocd/webapp-kustom-prod
+```
 
 
 
